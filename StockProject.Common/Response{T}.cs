@@ -10,10 +10,18 @@ namespace StockProject.Common
     {
         public T Data { get; set; }
 
+
+        public Response(bool status) : base(status)
+        {
+            Status = status;
+        }
+
         public Response(bool status, T data) : base(status)
         {
             Data = data;
         }
+
+        
 
         public Response(string message, bool status) : base(message,status)
         {

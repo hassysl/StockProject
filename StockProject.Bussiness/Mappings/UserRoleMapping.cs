@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockProject.Bussiness.Mappings
 {
-    public class UserRoleMapping
+    public class UserRoleMapping 
     {
         public UserRoleListDto UserRoleToDtoList(UserRole userRole)
         {

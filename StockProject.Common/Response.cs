@@ -16,6 +16,12 @@ namespace StockProject.Common
             Status = status;
         }
 
+        //public List<Response> ListResponse()
+        //{
+
+        //}
+
+
         public Response(string message, bool status)
         {
             Message = message;

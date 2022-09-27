@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockProject.Bussiness.Mappings
 {
-    public class UserMapping
+    public class UserMapping 
     {
         public UserCreateDto UserToDtoCreate(User user)
         {

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockProject.Bussiness.Mappings
 {
-    public class ProductMapping
+    public class ProductMapping 
     {
         public ProductCreateDto ProductToDtoCreate(Product product)
         {

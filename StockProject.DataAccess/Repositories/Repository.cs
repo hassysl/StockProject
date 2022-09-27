@@ -58,5 +58,9 @@ namespace StockProject.DataAccess.Repositories
             _context.Entry(unchanged).CurrentValues.SetValues(entity);
             _context.SaveChanges();
         }
+        public async Task<T> GetByFilterAsync(Expression<Func<T,bool>> filter)
+        {
+            return await _context.Set<T>().SingleOrDefaultAsync(filter);
+        }
     }
 }

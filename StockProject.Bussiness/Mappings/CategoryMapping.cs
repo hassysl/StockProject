@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace StockProject.Bussiness.Mappings
 {
-    public class CategoryMapping
+    public class CategoryMapping : IMapping
     {
         public CategoryCreateDto CategoryToDtoCreate(Category category)
         {
@@ -42,14 +42,17 @@ namespace StockProject.Bussiness.Mappings
             };
         }
 
-        public CategoryListDto CategoryToDtoList(Category category)
+        public CategoryListDto CategoryListToDtoList(List<Category> category)
         {
-            return new CategoryListDto()
+            CategoryListDto dto = new CategoryListDto();
+            foreach (var item in category)
             {
-                Id = category.Id,
-                Name = category.Name,
-
-            };
+                dto.Id = item.Id;
+                dto.Name = item.Name;
+            }
+            return dto;
+            
+           
         }
         public Category DtoToCategoryList(CategoryListDto categoryDto)
         {
