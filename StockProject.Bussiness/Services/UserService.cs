@@ -15,15 +15,13 @@ namespace StockProject.Bussiness.Services
     {
         private readonly IValidator<UserCreateDto> _createDtoValidator;
         private readonly IValidator<UserUpdateDto> _updateDtoValidator;
-        private readonly IValidator<UserLoginDto> _loginDtoValidator;
         private readonly IUserRepository _repo;
 
-        public UserService(IValidator<UserCreateDto> createDtoValidator, IValidator<UserUpdateDto> updateDtoValidator, IUserRepository repo, IValidator<UserLoginDto> loginValidator)
+        public UserService(IValidator<UserCreateDto> createDtoValidator, IValidator<UserUpdateDto> updateDtoValidator, IUserRepository repo)
         {
             _createDtoValidator = createDtoValidator;
             _updateDtoValidator = updateDtoValidator;
             _repo = repo;
-            _loginDtoValidator = loginValidator;
         }
 
         public async Task<IResponse<UserCreateDto>> CreateAsync(UserCreateDto dto)
@@ -62,6 +60,23 @@ namespace StockProject.Bussiness.Services
             }
 
             return new Response<List<UserListDto>>(true, listDto);
+        }
+
+
+        public async Task<IResponse<List<UserLoginDto>>> GetAllLoginAsync()
+        {
+            var data = await _repo.GetAllAsync();
+            var listDto = new List<UserLoginDto>();
+            foreach (var item in data)
+            {
+                listDto.Add(new UserLoginDto
+                {
+                    Username = item.Username,
+                    Password = item.Password,
+                });
+            }
+
+            return new Response<List<UserLoginDto>>(true, listDto);
         }
 
         public async Task<IResponse<User>> GetByIdAsync<IDto>(int id)

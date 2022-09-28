@@ -27,7 +27,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
     {
         ValidIssuer = "http://localhost",
         ValidAudience = "http://localhost",
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("halil")),
+        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("halilhalilhalil1.")),
         ValidateIssuerSigningKey = true,
         ValidateLifetime = true,
         ClockSkew = TimeSpan.Zero,
@@ -57,9 +57,13 @@ builder.Services.AddScoped<IUsersUserRolesRepository, UsersUserRolesRepository>(
 
 builder.Services.AddScoped<ICategoryService, CategoryService>();
 builder.Services.AddScoped<IUsersUserRolesService, UsersUserRolesService>();
+builder.Services.AddScoped<IProductService, ProductService>();
+builder.Services.AddScoped<IOrderService, OrderService>();
+builder.Services.AddScoped<IUserService, UserService>();
+builder.Services.AddScoped<IUserRoleService, UserRoleService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
 
-//builder.Services.AddTransient<ICategoryService, CategoryService>();
-//builder.Services.AddSingleton<ICategoryService, CategoryService>();
+
 
 
 builder.Services.AddControllers();
@@ -81,9 +85,11 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+
 app.UseAuthentication();
 
 app.UseAuthorization();
+
 
 app.UseEndpoints(endpoints =>
 {

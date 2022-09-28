@@ -1,5 +1,5 @@
 ﻿using StockProject.Bussiness.Interfaces;
-using StockProject.Bussiness.Token;
+using StockProject.Bussiness;
 using StockProject.Common;
 using StockProject.DataAccess.Context;
 using StockProject.Dtos.UserDtos;
@@ -8,10 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using StockProject.Bussiness.Token;
 
 namespace StockProject.Bussiness.Services
 {
-    public class AuthService
+    public class AuthService : IAuthService
     {
         private readonly StockProjectContext _context;
         private readonly IUserRepository _repo;
@@ -24,24 +25,27 @@ namespace StockProject.Bussiness.Services
             _service = service;
         }
 
-        public async Task<IResponse<UserListDto>> Login(string username)
+        public async Task<IResponse<string>> Login(UserLoginDto userLoginDto)
         {
-            var data = await _repo.GetByFilterAsync(x => x.Username == username);
-            var dto = new UserListDto()
-            {
-                Id = data.Id,
-                Name = data.Name,
-                Surname = data.Surname,
-                Username = data.Username,
-            };
+            // var data = await _repo.GetByFilterAsync(x => x.Username == username);
+            //if(data == null)
+            //{
+            //    return new Response<UserListDto>(false);
+            //}
+           
 
-            var status = await _service.CheckUserAsync(username);
-            if (status == true)
+            var users = await _service.GetAllLoginAsync();
+            var userList = users.Data;
+            var status = userList.FirstOrDefault(x => x.Username == userLoginDto.Username && x.Password == userLoginDto.Password);
+                
+                //CheckUserAsync(username);
+            if (status != null)
             {
-                var x = new JwtTokenCreator().GenerateToken();
-                return new Response<UserListDto>(true, dto);
+                var x = new JwtTokenCreator();
+                var token = x.GenerateToken();
+                return new Response<string>(true, token);
             }
-           return new Response<UserListDto>(false, dto);
+           return new Response<string>(false, null);
         }
 
     }

@@ -20,7 +20,7 @@ namespace StockProject.API.Controllers
             _service = service;
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPost("create")]
         public async Task<IActionResult> Create(CategoryCreateDto categoryCreateDto)
         {
@@ -32,7 +32,7 @@ namespace StockProject.API.Controllers
             return Created(string.Empty, created);
         }
 
-        //[Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin")]
         [HttpPut("update")]
         public async Task<IActionResult> Update(CategoryUpdateDto categoryUpdateDto)
         {
@@ -46,7 +46,7 @@ namespace StockProject.API.Controllers
             return Ok(categoryUpdateDto);
         }
 
-        //[Authorize]
+        [Authorize]
         [HttpGet("get")]
         public async Task<IActionResult> GetAll()
         {
@@ -59,7 +59,7 @@ namespace StockProject.API.Controllers
         }
 
 
-        //[Authorize(Roles ="Admin")]
+        [Authorize(Roles ="Admin")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Remove(int id)
         {

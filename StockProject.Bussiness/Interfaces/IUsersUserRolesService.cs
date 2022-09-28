@@ -1,4 +1,6 @@
-﻿using StockProject.DataAccess.Interfaces;
+﻿using StockProject.Common;
+using StockProject.DataAccess.Interfaces;
+using StockProject.Dtos.UserDtos;
 using StockProject.Entities.Entity;
 using System;
 using System.Collections.Generic;
@@ -10,7 +12,6 @@ namespace StockProject.Bussiness.Interfaces
 {
     public interface IUsersUserRolesService  
     {
-        Task CreateAsync(UsersUserRole entity);
-
+        Task<IResponse<UserCreateDto>> CreateAsync(UsersUserRole entity);
     }
 }

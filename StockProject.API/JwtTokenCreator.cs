@@ -16,7 +16,7 @@ namespace StockProject.API
             List<Claim> claims = new List<Claim>();
             claims.Add(new Claim(ClaimTypes.Role, "Admin"));
 
-            JwtSecurityToken token = new JwtSecurityToken(issuer: "http://localhost", claims: null, audience: "http://localhost", notBefore: DateTime.Now, expires: DateTime.Now.AddDays(10), signingCredentials: credentials);
+            JwtSecurityToken token = new JwtSecurityToken(issuer: "http://localhost", claims: claims, audience: "http://localhost", notBefore: DateTime.Now, expires: DateTime.Now.AddDays(10), signingCredentials: credentials );
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
 
 

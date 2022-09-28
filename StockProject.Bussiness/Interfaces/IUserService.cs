@@ -15,6 +15,7 @@ namespace StockProject.Bussiness.Interfaces
 
 
         Task<IResponse<List<UserListDto>>> GetAllAsync();
+        Task<IResponse<List<UserLoginDto>>> GetAllLoginAsync();
 
 
         Task<IResponse<UserUpdateDto>> UpdateAsync(UserUpdateDto dto);
@@ -22,7 +23,6 @@ namespace StockProject.Bussiness.Interfaces
 
 
         Task<IResponse> RemoveAsync(int id);
-
 
         Task<IResponse<User>> GetByIdAsync<IDto>(int id);
         Task<bool> CheckUserAsync(string username);

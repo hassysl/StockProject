@@ -60,7 +60,12 @@ namespace StockProject.DataAccess.Repositories
         }
         public async Task<T> GetByFilterAsync(Expression<Func<T,bool>> filter)
         {
-            return await _context.Set<T>().SingleOrDefaultAsync(filter);
+            var entity = await _context.Set<T>().SingleOrDefaultAsync(filter);
+            if(entity == null)
+            {
+                return new T();
+            }
+            return entity;
         }
     }
 }

@@ -18,7 +18,7 @@ namespace StockProject.Bussiness.Token
             SigningCredentials credentials = new SigningCredentials(key, SecurityAlgorithms.HmacSha256); //imzamızı oluşturduk
 
             List<Claim> claims = new List<Claim>();
-            claims.Add(new Claim(ClaimTypes.Role, "Admin"));
+            claims.Add(new Claim(ClaimTypes.Role, "Member"));
 
             JwtSecurityToken token = new JwtSecurityToken(issuer: "http://localhost", claims: null, audience: "http://localhost", notBefore: DateTime.Now, expires: DateTime.Now.AddDays(10), signingCredentials: credentials);
             JwtSecurityTokenHandler handler = new JwtSecurityTokenHandler();
