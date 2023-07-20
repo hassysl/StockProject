@@ -35,7 +35,7 @@ builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJw
 
 });
 
-builder.Services.AddDbContext<StockProjectContext>(x => x.UseSqlServer("server=coinodb-dev.cjq6i1xxy6zz.eu-central-1.rds.amazonaws.com; database=StockProjectHalil;Uid=sa;Password=DtzsCI3HF9n4WIX7O3dj6SSdC43PdpwpMtcaXtDlj8TJy3KDSJ"));
+builder.Services.AddDbContext<StockProjectContext>(x => x.UseSqlServer("server=myservername; database=StockProjectHalil;Uid=xx;Password=XXX"));
 
 
 builder.Services.AddTransient<IValidator<CategoryCreateDto>, CategoryCreateDtoValidator>();
