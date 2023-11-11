@@ -10,5 +10,6 @@ namespace StockProject.Entities.Entity
     {
         public string Name { get; set; }
         public List<Product> Products { get; set; }
+        public int MyProperty { get; set; }
     }
 }
